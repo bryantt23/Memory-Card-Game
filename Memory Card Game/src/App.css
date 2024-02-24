@@ -2,13 +2,14 @@
 
 body {
  background: linear-gradient(60deg, #96deda 0%, #50c9c3 100%);
- color:azure;
+ color:rgb(255, 19, 145);
  font-family: "Play";
  display: flex;
  align-items: center;
  height: 100vh;
  margin: 0;
- font-size: 30px;
+ font-size: 40px;
+ text-shadow: 1px 1px 2px black;
 }
 
 #root {
