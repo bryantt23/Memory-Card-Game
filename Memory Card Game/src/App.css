@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+
+body {
+ background: linear-gradient(60deg, #96deda 0%, #50c9c3 100%);
+ color:aliceblue;
+ font-family: "Play";
+ display: flex;
+ align-items: center;
+ height: 100vh;
+ margin: 0;
+ font-size: 30px;
+}
+
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+
