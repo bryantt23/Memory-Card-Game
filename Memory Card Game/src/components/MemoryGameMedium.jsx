@@ -26,6 +26,21 @@ export default function MemoryGame() {
     return secondCard.index === null && firstCard.index !== index;
   }
 
+  function getStyle(item, index) {
+    if (
+      !remainingCards.includes(item)
+    ) {
+      return "flipped disabled";
+    }
+    if (
+      firstCard.index === index ||
+      secondCard.index === index
+    ) {
+      return "flipped";
+    }
+    return "";
+  }
+
   const handleClick = (index, value) => {
     console.log("index", index);
     console.log("firstCard.index", firstCard.index);
@@ -52,7 +67,7 @@ export default function MemoryGame() {
   return (
     <>
       {remainingCards.length > 0
-        ? `Remaining cards: `
+        ? `Remaining cat cards: `
         : "You found the matches!"}
       {remainingCards.map((card, index) => {
         return (
@@ -68,12 +83,7 @@ export default function MemoryGame() {
           return (
             <div
               key={index}
-              className={`card ${
-                (firstCard.index === index ||
-                  secondCard.index === index ||
-                  !remainingCards.includes(item)) &&
-                "flipped"
-              }`}
+              className={`card ${getStyle(item, index)}`}
               onClick={() => handleClick(index, item)}
             >
               <div className="backSide"></div>
