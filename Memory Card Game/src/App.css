@@ -1,8 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap");
 
 body {
-  background: linear-gradient(60deg, #c7ebe9 0%, #c6ecea 100%);
-  color: rgb(255, 19, 145);
+  background: #efd4f8;
+  color: rgb(13, 157, 247);
   font-family: "Play";
   display: flex;
   align-items: center;
@@ -26,9 +26,7 @@ body {
   margin-bottom: 40px;
 }
 
-.easy,
-.medium,
-.hard {
+.btn {
   cursor: pointer;
   padding: 10px 20px;
   border-radius: 5px;
@@ -39,11 +37,9 @@ body {
   box-shadow: 1px 1px 2px black;
 }
 
-.easy:hover,
-.medium:hover,
-.hard:hover {
+.btn:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 0 5px 15px rgba(255, 19, 145, 0.613);
+  box-shadow: 0 5px 15px rgba(23, 166, 255, 0.639);
 }
 
 .disabled {

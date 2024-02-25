@@ -4,35 +4,53 @@ import shuffle from "../shuffle";
 
 const items = [1, 2, 3];
 const allItems = shuffle([...items, ...items]);
-const defaultState = { index: null, value: null };
+const faceDownState = { index: null, value: null };
 
 export default function MemoryGame() {
-  const [firstCard, setFirstCard] = useState(defaultState);
-  const [secondCard, setSecondCard] = useState(defaultState);
+  const [firstCard, setFirstCard] = useState(faceDownState);
+  const [secondCard, setSecondCard] = useState(faceDownState);
   const [remainingCards, setRemainingCards] = useState(items);
   const [moves, setMoves] = useState(0);
 
   const timer = useRef();
 
+  function bothCardsFaceUp() {
+    return firstCard.index !== null && secondCard.index !== null;
+  }
+
+  function firstCardFaceDown() {
+    return firstCard.index === null;
+  }
+
+  function isValidMove(index) {
+    return secondCard.index === null && firstCard.index !== index;
+  }
+
+  function getStyle(item, index) {
+    if (!remainingCards.includes(item)) {
+      return "flipped disabled";
+    }
+    if (firstCard.index === index || secondCard.index === index) {
+      return "flipped";
+    }
+    return "";
+  }
+
   const handleClick = (index, value) => {
     clearTimeout(timer.current);
 
     timer.current = setTimeout(() => {
-      setFirstCard(defaultState);
-      setSecondCard(defaultState);
+      setFirstCard(faceDownState);
+      setSecondCard(faceDownState);
     }, 2000);
-
-    if (
-      firstCard.index === null ||
-      (firstCard.index !== null && secondCard.index !== null)
-    ) {
-      setSecondCard(defaultState);
+    if (bothCardsFaceUp()) {
+      console.log("both cards face up, wait for times up");
+    } else if (firstCardFaceDown()) {
       setFirstCard({ index, value });
       setMoves((moves) => moves + 1);
-    } else if (secondCard.index === null && firstCard.index !== index) {
+    } else if (isValidMove(index)) {
       setSecondCard({ index, value });
       setMoves((moves) => moves + 1);
-
       if (firstCard.value === value) {
         setRemainingCards(remainingCards.filter((card) => card !== value));
       }
@@ -41,7 +59,9 @@ export default function MemoryGame() {
 
   return (
     <>
-      {remainingCards.length > 0 ? `Remaining cards: ` : "You found the matches!"}
+      {remainingCards.length > 0
+        ? `Remaining cat cards: `
+        : "You found the matches!"}
       {remainingCards.map((card, index) => {
         return (
           <img
@@ -56,12 +76,7 @@ export default function MemoryGame() {
           return (
             <div
               key={index}
-              className={`card ${
-                (firstCard.index === index ||
-                  secondCard.index === index ||
-                  !remainingCards.includes(item)) &&
-                "flipped"
-              }`}
+              className={`card ${getStyle(item, index)}`}
               onClick={() => handleClick(index, item)}
             >
               <div className="backSide"></div>

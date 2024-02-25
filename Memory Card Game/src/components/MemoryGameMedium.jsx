@@ -42,8 +42,6 @@ export default function MemoryGame() {
   }
 
   const handleClick = (index, value) => {
-    console.log("index", index);
-    console.log("firstCard.index", firstCard.index);
     clearTimeout(timer.current);
 
     timer.current = setTimeout(() => {

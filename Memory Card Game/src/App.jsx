@@ -6,8 +6,8 @@ import MemoryGameHard from "./components/MemoryGameHard";
 
 function App() {
   const [visibleComponent, setVisibleComponent] = useState("easy");
-  
-//Other alternative for component visibility
+
+  //Other alternative for component visibility
   // function generateComponent() {
   //   switch (visibleComponent) {
   //     case "easy":
@@ -25,22 +25,22 @@ function App() {
     <div className="App">
       <h1 className="title">MEMORY CARD GAME</h1>
       <div className="buttons">
-        <button className="easy" onClick={() => setVisibleComponent("easy")}>
+        <button className="btn" onClick={() => setVisibleComponent("easy")}>
           Easy
         </button>
         <button
-          className="medium"
+          className="btn"
           onClick={() => setVisibleComponent("medium")}
         >
           Medium
         </button>
-        <button className="hard" onClick={() => setVisibleComponent("hard")}>
+        <button className="btn" onClick={() => setVisibleComponent("hard")}>
           Hard
         </button>
       </div>
-      {visibleComponent === 'easy' && <MemoryGameEasy />}
-      {visibleComponent === 'medium' && <MemoryGameMedium />}
-      {visibleComponent === 'hard' && <MemoryGameHard />}
+      {visibleComponent === "easy" && <MemoryGameEasy />}
+      {visibleComponent === "medium" && <MemoryGameMedium />}
+      {visibleComponent === "hard" && <MemoryGameHard />}
       {/* Call function for other alternative */}
       {/* {generateComponent()} */}
     </div>
