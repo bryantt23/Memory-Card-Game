@@ -4,36 +4,44 @@ import shuffle from "../shuffle";
 
 const items = [1, 2, 3, 4, 5];
 const allItems = shuffle([...items, ...items]);
-const defaultState = { index: null, value: null };
+const faceDownState = { index: null, value: null };
 
 export default function MemoryGame() {
-  const [firstCard, setFirstCard] = useState(defaultState);
-  const [secondCard, setSecondCard] = useState(defaultState);
+  const [firstCard, setFirstCard] = useState(faceDownState);
+  const [secondCard, setSecondCard] = useState(faceDownState);
   const [remainingCards, setRemainingCards] = useState(items);
   const [moves, setMoves] = useState(0);
 
   const timer = useRef();
 
+  function bothCardsFaceUp() {
+    return firstCard.index !== null && secondCard.index !== null;
+  }
+
+  function firstCardFaceDown() {
+    return firstCard.index === null;
+  }
+
+  function isValidMove(index) {
+    return secondCard.index === null && firstCard.index !== index;
+  }
+
   const handleClick = (index, value) => {
+    console.log("index", index);
+    console.log("firstCard.index", firstCard.index);
     clearTimeout(timer.current);
 
     timer.current = setTimeout(() => {
-      setFirstCard(defaultState);
-      setSecondCard(defaultState);
+      setFirstCard(faceDownState);
+      setSecondCard(faceDownState);
     }, 2000);
-    if (
-    firstCard.index !== null && secondCard.index !== null 
-    ){
-      console.log("both cards face up")
-    }
-    else if (
-      firstCard.index === null // ||
-      // (firstCard.index !== null && secondCard.index !== null)
-    ) {
-      setSecondCard(defaultState);
+    if (bothCardsFaceUp()) {
+      console.log("both cards face up, wait for times up");
+    } else if (firstCardFaceDown()) {
+      setSecondCard(faceDownState);
       setFirstCard({ index, value });
       setMoves((moves) => moves + 1);
-    } else if (secondCard.index === null && firstCard.index !== index) {
+    } else if (isValidMove(index)) {
       setSecondCard({ index, value });
       setMoves((moves) => moves + 1);
 
@@ -45,7 +53,9 @@ export default function MemoryGame() {
 
   return (
     <>
-      {remainingCards.length > 0 ? `Remaining cards: ` : "You found the matches!"}
+      {remainingCards.length > 0
+        ? `Remaining cards: `
+        : "You found the matches!"}
       {remainingCards.map((card, index) => {
         return (
           <img
