@@ -1,26 +1,15 @@
 import { useState, useRef } from "react";
-import "../styles/MemoryGame.css";
+import "../styles/MemoryGameMedium.css";
 import shuffle from "../shuffle";
 
-const difficulties = {
-  easy: 6,
-  medium: 10,
-  hard: 14,
-};
-
-const generateItems = (difficulty) => {
-  const baseItems = [1, 2, 3, 4, 5];
-  const items = [...baseItems, ...baseItems];
-  return shuffle(items.slice(0, difficulties[difficulty]));
-};
-
+const items = [1, 2, 3, 4, 5];
+const allItems = shuffle([...items, ...items]);
 const defaultState = { index: null, value: null };
 
 export default function MemoryGame() {
-  const [difficulty, setDifficulty] = useState("easy");
   const [firstCard, setFirstCard] = useState(defaultState);
   const [secondCard, setSecondCard] = useState(defaultState);
-  const [remainingCards, setRemainingCards] = useState(generateItems(difficulty));
+  const [remainingCards, setRemainingCards] = useState(items);
   const [moves, setMoves] = useState(0);
 
   const timer = useRef();
@@ -50,39 +39,9 @@ export default function MemoryGame() {
     }
   };
 
-  const handleDifficultyChange = (newDifficulty) => {
-    setDifficulty(newDifficulty);
-    setRemainingCards(generateItems(newDifficulty));
-    setFirstCard(defaultState);
-    setSecondCard(defaultState);
-    setMoves(0);
-  };
-
   return (
     <>
-      <div className="difficulty-buttons">
-        <button
-          className={difficulty === "easy" ? "active" : ""}
-          onClick={() => handleDifficultyChange("easy")}
-        >
-          Easy
-        </button>
-        <button
-          className={difficulty === "medium" ? "active" : ""}
-          onClick={() => handleDifficultyChange("medium")}
-        >
-          Medium
-        </button>
-        <button
-          className={difficulty === "hard" ? "active" : ""}
-          onClick={() => handleDifficultyChange("hard")}
-        >
-          Hard
-        </button>
-      </div>
-      {remainingCards.length > 0
-        ? `Remaining cards: `
-        : "You found all the matches!"}
+      {remainingCards.length > 0 ? `Remaining cards: ` : "You found the matches!"}
       {remainingCards.map((card, index) => {
         return (
           <img
@@ -92,8 +51,8 @@ export default function MemoryGame() {
           />
         );
       })}
-      <div className="cardsContainer">
-        {generateItems(difficulty).map((item, index) => {
+      <div className="cardsContainerMedium">
+        {allItems.map((item, index) => {
           return (
             <div
               key={index}

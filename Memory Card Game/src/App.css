@@ -1,15 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Play:wght@400;700&display=swap");
 
 body {
- background: linear-gradient(60deg, #c7ebe9 0%, #c6ecea 100%);
- color:rgb(255, 19, 145);
- font-family: "Play";
- display: flex;
- align-items: center;
- height: 100vh;
- margin: 0;
- font-size: 40px;
- text-shadow: 1px 1px 2px black;
+  background: linear-gradient(60deg, #c7ebe9 0%, #c6ecea 100%);
+  color: rgb(255, 19, 145);
+  font-family: "Play";
+  display: flex;
+  align-items: center;
+  margin: 0;
+  font-size: 40px;
+  text-shadow: 1px 1px 2px black;
 }
 
 #root {
@@ -19,4 +18,29 @@ body {
   text-align: center;
 }
 
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 40px;
+}
 
+.easy,
+.medium,
+.hard {
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2px rgb(60, 1, 90) solid;
+  color: rgb(60, 1, 90);
+  font-size: 16px;
+  font-weight: 600;
+  box-shadow: 1px 1px 2px black;
+}
+
+.easy:hover,
+.medium:hover,
+.hard:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 0 5px 15px rgba(255, 19, 145, 0.613);
+}
