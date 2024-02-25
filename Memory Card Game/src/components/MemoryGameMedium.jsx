@@ -38,13 +38,11 @@ export default function MemoryGame() {
     if (bothCardsFaceUp()) {
       console.log("both cards face up, wait for times up");
     } else if (firstCardFaceDown()) {
-      setSecondCard(faceDownState);
       setFirstCard({ index, value });
       setMoves((moves) => moves + 1);
     } else if (isValidMove(index)) {
       setSecondCard({ index, value });
       setMoves((moves) => moves + 1);
-
       if (firstCard.value === value) {
         setRemainingCards(remainingCards.filter((card) => card !== value));
       }
