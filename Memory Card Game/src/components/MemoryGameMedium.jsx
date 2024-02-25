@@ -21,10 +21,14 @@ export default function MemoryGame() {
       setFirstCard(defaultState);
       setSecondCard(defaultState);
     }, 2000);
-
     if (
-      firstCard.index === null ||
-      (firstCard.index !== null && secondCard.index !== null)
+    firstCard.index !== null && secondCard.index !== null 
+    ){
+      console.log("both cards face up")
+    }
+    else if (
+      firstCard.index === null // ||
+      // (firstCard.index !== null && secondCard.index !== null)
     ) {
       setSecondCard(defaultState);
       setFirstCard({ index, value });
