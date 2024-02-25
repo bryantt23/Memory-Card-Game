@@ -2,7 +2,7 @@
 
 body {
   background: #efd4f8;
-  color: rgb(13, 157, 247);
+  color: rgb(27, 111, 247);
   font-family: "Play";
   display: flex;
   align-items: center;
@@ -39,7 +39,7 @@ body {
 
 .btn:hover {
   transform: translate(-2px, -2px);
-  box-shadow: 0 5px 15px rgba(23, 166, 255, 0.639);
+  box-shadow: 0 5px 15px rgba(46, 144, 205, 0.639);
 }
 
 .disabled {
