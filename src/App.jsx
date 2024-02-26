@@ -3,6 +3,7 @@ import "./App.css";
 import MemoryGameEasy from "./components/MemoryGameEasy";
 import MemoryGameMedium from "./components/MemoryGameMedium";
 import MemoryGameHard from "./components/MemoryGameHard";
+import MemoryGame from "./components/MemoryGame";
 
 function App() {
   const [visibleComponent, setVisibleComponent] = useState("easy");
@@ -38,9 +39,9 @@ function App() {
           Hard
         </button>
       </div>
-      {visibleComponent === "easy" && <MemoryGameEasy />}
-      {visibleComponent === "medium" && <MemoryGameMedium />}
-      {visibleComponent === "hard" && <MemoryGameHard />}
+      {visibleComponent === "easy" && <MemoryGame items={[1, 2, 3]} className={"cardsContainerEasy"} />}
+      {visibleComponent === "medium" && <MemoryGame items={[1, 2, 3, 4, 5]} className={"cardsContainerMedium"} />}
+      {visibleComponent === "hard" && <MemoryGame items={[1, 2, 3, 4, 5, 6, 7, 8]} className={"cardsContainerHard"} />}
       {/* Call function for other alternative */}
       {/* {generateComponent()} */}
     </div>
