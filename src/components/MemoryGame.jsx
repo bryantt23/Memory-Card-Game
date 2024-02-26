@@ -4,7 +4,6 @@ import "../styles/MemoryGameMedium.css";
 import "../styles/MemoryGameHard.css";
 import shuffle from "../shuffle";
 
-const items = [1, 2, 3, 4, 5];
 const faceDownState = { index: null, value: null };
 
 export default function MemoryGame({ className, items }) {
@@ -12,8 +11,7 @@ export default function MemoryGame({ className, items }) {
   const [secondCard, setSecondCard] = useState(faceDownState);
   const [remainingCards, setRemainingCards] = useState(items);
   const [moves, setMoves] = useState(0);
-  const [allItems] = useState(shuffle([...items, ...items]))
-  console.log("🚀 ~ MemoryGame ~ allItems:", allItems)
+  const allItemsRef = useRef(shuffle([...items, ...items]));
 
   const timer = useRef();
 
@@ -80,7 +78,7 @@ export default function MemoryGame({ className, items }) {
         );
       })}
       <div className={`cardsContainer ${className}`}>
-        {allItems.map((item, index) => {
+        {allItemsRef.current.map((item, index) => {
           return (
             <div
               key={index}
