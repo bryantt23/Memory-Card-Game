@@ -58,6 +58,9 @@ export default function MemoryGame({ className, items }) {
       setSecondCard({ index, value });
       setMoves((moves) => moves + 1);
       if (firstCard.value === value) {
+        clearTimeout(timer.current)
+        setFirstCard(faceDownState)
+        setSecondCard(faceDownState)
         setRemainingCards(remainingCards.filter((card) => card !== value));
       }
     }
